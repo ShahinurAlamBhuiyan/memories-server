@@ -18,7 +18,7 @@ app.use(cors());
 app.use('/posts', postRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Hello, welcome to memories projects server')
+    res.send('Hello, welcome to memories server')
 })
 
 
@@ -30,7 +30,7 @@ mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>
     app.listen(PORT, () =>
-      console.log(`Server Running on Port: http://localhost:${PORT}`)
+      console.log(`Server Run on Port: http://localhost:${PORT}`)
     )
   )
   .catch((error) => `${error} did not connect`);
