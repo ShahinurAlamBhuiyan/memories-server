@@ -29,7 +29,7 @@ export const getPost = async (req, res) => {
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
-}
+};
 
 
 export const getPostsBySearch = async (req, res) => {
@@ -41,7 +41,7 @@ export const getPostsBySearch = async (req, res) => {
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
-}
+};
 
 
 export const createPost = async (req, res) => {
@@ -56,7 +56,7 @@ export const createPost = async (req, res) => {
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
-}
+};
 
 
 export const updatePost = async (req, res) => {
@@ -68,7 +68,7 @@ export const updatePost = async (req, res) => {
     const updatedPost = await PostMessage.findByIdAndUpdate(_id, { ...post, _id }, { new: true });
 
     res.json(updatedPost);
-}
+};
 
 
 export const deletePost = async (req, res) => {
@@ -79,7 +79,7 @@ export const deletePost = async (req, res) => {
     await PostMessage.findByIdAndRemove(_id);
 
     res.json({ message: 'Post deleted Successfully' });
-}
+};
 
 
 export const likePost = async (req, res) => {
@@ -100,7 +100,18 @@ export const likePost = async (req, res) => {
     }
 
     const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, { new: true });
+    res.json(updatedPost);
+};
 
+export const commentPost = async ( req, res) => {
+    const { id } = req.params;
+    const { value } = req.body;
+
+    const post = await PostMessage.findById(id);
+
+    post.comments.push(value);
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
 
     res.json(updatedPost);
 }
