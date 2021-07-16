@@ -20,7 +20,7 @@ app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Hello, welcome to memories server')
+    res.send('Hello, welcome to memories server side')
 })
 
 
